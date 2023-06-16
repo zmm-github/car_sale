@@ -1,0 +1,43 @@
+server:
+  port: 9999
+
+# thymeleaf配置
+spring:
+  thymeleaf:
+    # 缓存设置为false，修改代码后，立即生效
+    cache: false
+    mode: LEGACYHTML5
+    prefix: classpath:templates/pages/
+    suffix: .html
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/car_sale?serverTimezone=GMT%2B8
+    username: root
+    password: 20010101
+  # redis配置
+  redis:
+    port: 6379 # 默认就是6379
+    host: localhost  # 默认就是localhost
+  mvc:
+    pathmatch: # 这是因为Springfox使用的路径匹配是基于AntPathMatcher的，而Spring Boot 2.6.X使用的是PathPatternMatcher。
+      matching-strategy: ant_path_matcher
+  jackson: # 返回json的全局时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+# 日志配置
+logging:
+  level:
+    com.zmm.car: debug
+
+# mybatis-plus配置
+mybatis-plus:
+  type-aliases-package: com.zmm.car.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 图片上传路径
+img:
+  path: F:/VScode_workspace/car_sale_web/src/assets/upload/
