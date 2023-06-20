@@ -2,7 +2,7 @@ package com.zmm.car.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.Accessory;
 import com.zmm.car.service.IAccessoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,28 +60,28 @@ public class AccessoryController {
         Date date = new Date();
         accessory.setCreateTime(date);
         accessoryService.save(accessory);
-        return ResultMap.success("新增配件成功！！！");
+        return ResultMap.success("新增配件成功！");
     }
 
     /* 修改配件 */
     @PutMapping("/updateAccessory")
     public ResultMap updateAccessory(@RequestBody Accessory accessory) {
         accessoryService.updateById(accessory);
-        return ResultMap.success("修改配件成功！！！");
+        return ResultMap.success("修改配件成功！");
     }
 
     /* 删除配件 */
     @DeleteMapping("/deleteAccessoryById/{id}")
     public ResultMap deleteAccessoryById(@PathVariable("id") Integer id) {
         accessoryService.removeById(id);
-        return ResultMap.success("删除配件成功！！！");
+        return ResultMap.success("已成功删除编号 “" + id + "” 的配件信息！");
     }
 
     /* 删除选中的多个配件 */
     @DeleteMapping("/deleteAccessoryByIds")
     public ResultMap deleteAccessoryByIds(@RequestBody List<Integer> ids) {
         accessoryService.removeByIds(ids);
-        return ResultMap.success("已成功删除编号 “" + ids + "” 的配件！！！");
+        return ResultMap.success("已成功删除编号 “" + ids + "” 的配件信息！");
     }
 
     /* 根据id查询指定配件信息 */

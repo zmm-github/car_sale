@@ -457,15 +457,6 @@ export default {
                 // 提示失败消息
                 that.$message.error("已取消删除");
             })
-        },
-        getImg(image) {
-            try {
-                return require("@/assets/upload/" + image);
-                //图片地址
-            } catch (e) {
-                return require("@/assets/upload/20230212140922.jpg");
-                //图片找不到时，使用默认图片
-            }
         }
     },
     created() {

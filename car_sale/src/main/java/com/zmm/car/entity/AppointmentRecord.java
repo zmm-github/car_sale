@@ -17,8 +17,8 @@ import java.util.Date;
  * @author zmm
  * @since 2023-05-25
  */
-@TableName("order_record")
-public class OrderRecord implements Serializable {
+@TableName("appointment_record")
+public class AppointmentRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

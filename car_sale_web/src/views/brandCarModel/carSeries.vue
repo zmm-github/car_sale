@@ -224,9 +224,10 @@ export default {
     },
     // 获取车系列表
     getCarSeriesList() {
-      carSeriesApi.getCarSeriesList(this.searchModel).then(res => {
-        this.total = res.data.total;
-        this.carSeriesList = res.data.rows;
+      var that = this;
+      carSeriesApi.getCarSeriesList(that.searchModel).then(res => {
+        that.total = res.data.total;
+        that.carSeriesList = res.data.rows;
       });
     },
 
@@ -264,9 +265,10 @@ export default {
 
     // 新增和修改车系
     handleAddAndUpdate(carSeriesFormRef) {
-      this.$refs[carSeriesFormRef].validate((valid) => {
+      var that = this;
+      that.$refs[carSeriesFormRef].validate((valid) => {
         if (valid) {
-          carSeriesApi.saveCarSeries(this.carSeriesForm).then(res => {
+          carSeriesApi.saveCarSeries(that.carSeriesForm).then(res => {
             // 清空对话框中的数据
             that.carSeriesForm = {};
             // 关闭对话框

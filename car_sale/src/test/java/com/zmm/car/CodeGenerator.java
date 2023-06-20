@@ -13,7 +13,7 @@ public class CodeGenerator {
         String password = "20010101";
         String moduleName = "accountManage";
         String mapperLocation = "F:\\IdeaProjects\\car_sale\\src\\main\\resources\\mapper";
-//        String tables = "accessory,car_model,car_series,customer,guide,lamp,lecture_hall,order_record,promotion,rescue_record,role,user,user_role";
+//        String tables = "accessory,car_model,car_series,customer,order_record,promotion,rescue_record,role,user,user_role";
         String tables = "orders";
 
         FastAutoGenerator.create(url, username, password)

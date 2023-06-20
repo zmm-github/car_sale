@@ -3,9 +3,6 @@ package com.zmm.car.utils;/**
  * @date 2023/6/10 17:42
  */
 
-import com.zmm.car.common.vo.ResultMap;
-import com.zmm.car.service.ICarModelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

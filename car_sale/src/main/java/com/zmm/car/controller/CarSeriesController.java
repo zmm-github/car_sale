@@ -2,7 +2,7 @@ package com.zmm.car.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.CarSeries;
 import com.zmm.car.service.ICarSeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,28 +55,28 @@ public class CarSeriesController {
         Date date = new Date();
         carSeriesData.setCreateTime(date);
         carSeriesService.save(carSeriesData);
-        return ResultMap.success();
+        return ResultMap.success("新增车系成功！");
     }
 
     /* 删除车系 */
     @DeleteMapping("/deleteCarSeriesById/{id}")
     public ResultMap deleteCarSeriesById(@PathVariable("id") Integer id) {
         carSeriesService.removeById(id);
-        return ResultMap.success();
+        return ResultMap.success("已成功删除编号 “" + id + "” 的车系信息！");
     }
 
     /* 修改车系 */
     @PutMapping("/updateCarSeriesById")
     public ResultMap updateCarSeriesById(@RequestBody CarSeries carSeriesData) {
         carSeriesService.updateById(carSeriesData);
-        return ResultMap.success();
+        return ResultMap.success("修改车系成功！");
     }
 
     /* 根据多个ID删除多个车系 */
     @DeleteMapping("/deleteCarSeriesByIds")
     public ResultMap deleteCarSeriesByIds(@RequestBody List<Integer> ids) {
         carSeriesService.removeBatchByIds(ids);
-        return ResultMap.success();
+        return ResultMap.success("已成功删除编号 “" + ids + "” 的车系信息！");
     }
 
     /* 根据ID获取指定车系信息 */

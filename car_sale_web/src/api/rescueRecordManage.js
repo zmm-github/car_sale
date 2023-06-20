@@ -65,6 +65,14 @@ export default {
       url: `/rescueRecord/getRescueRecordById/${id}`,
       method: 'get'
     });
+  },
+
+  // 获取救援统计折线图
+  getRescueLine() {
+    return request({
+      url: '/rescueRecord/getRescueLine',
+      method: 'get'
+    });
   }
 
 }

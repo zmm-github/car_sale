@@ -1,6 +1,6 @@
 package com.zmm.car.controller;
 
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.Menu;
 import com.zmm.car.service.IMenuService;
 //import io.swagger.annotations.ApiOperation;

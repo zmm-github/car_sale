@@ -2,7 +2,8 @@ package com.zmm.car.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.BarVO;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.Orders;
 import com.zmm.car.service.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,7 @@ public class OrdersController {
         orders.setCreateTime(date);
         orders.setUpdateTime(date);
         ordersService.save(orders);
-        return ResultMap.success("新增订单成功！！！");
+        return ResultMap.success("新增订单成功！");
     }
 
     /* 修改订单 */
@@ -73,21 +74,21 @@ public class OrdersController {
         Date date = new Date();
         orders.setUpdateTime(date);
         ordersService.updateById(orders);
-        return ResultMap.success("修改订单成功！！！");
+        return ResultMap.success("修改订单成功！");
     }
 
     /* 删除订单 */
     @DeleteMapping("/deleteOrdersById/{id}")
     public ResultMap deleteOrdersById(@PathVariable("id") Integer id) {
         ordersService.removeById(id);
-        return ResultMap.success("删除订单成功！！！");
+        return ResultMap.success("已成功删除编号 “" + id + "” 的订单信息！");
     }
 
     /* 删除选中的多个订单 */
     @DeleteMapping("/deleteOrdersByIds")
     public ResultMap deleteOrdersByIds(@RequestBody List<Integer> ids) {
         ordersService.removeByIds(ids);
-        return ResultMap.success("已成功删除编号 “" + ids + "” 的订单！！！");
+        return ResultMap.success("已成功删除编号 “" + ids + "” 的订单信息！");
     }
 
     /* 根据id查询指定订单信息 */
@@ -95,5 +96,12 @@ public class OrdersController {
     public ResultMap<Orders> getOrdersById(@PathVariable("id") Integer id) {
         Orders Orders = ordersService.getById(id);
         return ResultMap.success(Orders);
+    }
+
+    /* 获取订单统计柱状图 */
+    @GetMapping("/getOrdersBar")
+    public ResultMap getOrdersBar() {
+        BarVO barVO = ordersService.getOrdersBar();
+        return ResultMap.success(barVO);
     }
 }

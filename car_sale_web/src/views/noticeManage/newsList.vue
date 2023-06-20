@@ -193,8 +193,7 @@ export default {
 
         // 清除对话框中表单的数据
         clearData() {
-            this.carModelData = {}; //清除数据
-            this.imageUrl = ""; // 清除图像的src
+            this.newsForm = {}; //清除数据
         },
 
         // 设置表格样式

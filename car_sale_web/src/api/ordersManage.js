@@ -66,6 +66,14 @@ export default {
       url: `/orders/getOrdersById/${id}`,
       method: 'get'
     });
+  },
+
+  // 获取订单统计柱状图
+  getOrdersBar() {
+    return request({
+      url: '/orders/getOrdersBar',
+      method: 'get'
+    });
   }
 
 }

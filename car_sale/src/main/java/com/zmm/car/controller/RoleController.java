@@ -2,7 +2,7 @@ package com.zmm.car.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.Role;
 import com.zmm.car.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,14 +57,14 @@ public class RoleController {
     @PostMapping("/addRole")
     public ResultMap addRole(@RequestBody Role role) {
         roleService.addRole(role);
-        return ResultMap.success("新增角色成功...");
+        return ResultMap.success("新增角色成功！");
     }
 
     /* 根据ID修改角色 */
     @PutMapping("/updateRoleById")
     public ResultMap updateRoleById(@RequestBody Role role) {
         roleService.updateRoleById(role);
-        return ResultMap.success("修改角色成功...");
+        return ResultMap.success("修改角色成功！");
     }
 
     /* 根据ID获取指定角色 */
@@ -81,14 +81,14 @@ public class RoleController {
     @DeleteMapping("/deleteRoleById/{id}")
     public ResultMap deleteRoleById(@PathVariable("id") Integer id) {
         roleService.deleteRoleById(id);
-        return ResultMap.success("已删除编号 “" + id + "” 的角色...");
+        return ResultMap.success("已成功删除编号 “" + id + "” 的角色信息！");
     }
 
     /* 根据id批量删除角色 */
     @DeleteMapping("/deleteRoleByIds")
     public ResultMap deleteRoleByIds(@RequestBody List<Integer> ids) {
         roleService.deleteRoleByIds(ids);
-        return ResultMap.success("已删除编号 “" + ids + "” 的角色...");
+        return ResultMap.success("已成功删除编号 “" + ids + "” 的角色信息！");
     }
 
     /* 查询所有角色 */

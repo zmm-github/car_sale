@@ -1,4 +1,4 @@
-package com.zmm.car.common.vo;
+package com.zmm.car.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

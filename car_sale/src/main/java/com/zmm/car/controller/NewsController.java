@@ -2,10 +2,9 @@ package com.zmm.car.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.News;
 import com.zmm.car.service.INewsService;
-import freemarker.template.utility.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +61,7 @@ public class NewsController {
         news.setCreateTime(date);
         news.setModifyTime(date);
         newsService.save(news);
-        return ResultMap.success("新增新闻成功！！！");
+        return ResultMap.success("新增新闻成功！");
     }
 
     /* 修改新闻 */
@@ -71,14 +70,14 @@ public class NewsController {
         Date date = new Date();
         news.setCreateTime(date);
         newsService.updateById(news);
-        return ResultMap.success("修改新闻成功！！！");
+        return ResultMap.success("修改新闻成功！");
     }
 
     /* 删除新闻 */
     @DeleteMapping("/deleteNewsById/{id}")
     public ResultMap deleteNewsById(@PathVariable("id") Integer id) {
         newsService.removeById(id);
-        return ResultMap.success("编号 “" + id + "” 的新闻信息已删除！");
+        return ResultMap.success("已成功删除编号 “" + id + "” 的新闻信息！");
     }
 
     /* 根据id查询指定新闻内容 */
@@ -92,7 +91,7 @@ public class NewsController {
     @DeleteMapping("/deleteNewsByIds")
     public ResultMap deleteNewsByIds(@RequestBody List<Integer> ids) {
         newsService.removeBatchByIds(ids);
-        return ResultMap.success("编号 “" + ids + "” 的新闻信息已删除！");
+        return ResultMap.success("已成功删除编号 “" + ids + "” 的新闻信息！");
     }
 
     /* 获取所有新闻 */

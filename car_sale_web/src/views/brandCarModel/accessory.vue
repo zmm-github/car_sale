@@ -69,8 +69,10 @@
                         autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="所属车系" prop="carSeries" :label-width="formLabelWidth">
-                    <el-input v-model="accessoryForm.carSeries" placeholder="请输入所属车系" clearable
-                        autocomplete="off"></el-input>
+                    <el-select v-model="accessoryForm.carSeries" clearable placeholder="请选择车系">
+                        <el-option v-for="(carSeries, index) in carSeriesList" :key="index" :label="carSeries.carSeries"
+                            :value="carSeries.carSeries"></el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="配件价格" prop="money" :label-width="formLabelWidth">
                     <el-input v-model="accessoryForm.money" placeholder="请输入配件价格" clearable autocomplete="off"></el-input>
@@ -118,11 +120,13 @@
 <script>
 import htmlToExcel from '@/utils/htmlToExcel';
 import accessoryApi from "@/api/accessoryManage"
+import carSeriesApi from "@/api/carSeriesManage"
 export default {
     name: 'Accessory',
     data() {
         return {
             title: '',
+            carSeriesList: [],
             total: 0,
             excelDialogVisible: false,
             selectData: [],
@@ -176,6 +180,10 @@ export default {
         // 打开对话框
         openDialogUI(id) {
             var that = this;
+            // 获取所有车系信息
+            carSeriesApi.getAllCarSeries().then(res => {
+                that.carSeriesList = res.data;
+            })
             if (id == null) { // 新增操作
                 that.title = "新增配件";
             } else { // 修改操作

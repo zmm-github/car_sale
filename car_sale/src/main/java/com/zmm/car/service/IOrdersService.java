@@ -2,6 +2,7 @@ package com.zmm.car.service;
 
 import com.zmm.car.entity.Orders;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zmm.car.vo.BarVO;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IOrdersService extends IService<Orders> {
 
+    BarVO getOrdersBar();
 }

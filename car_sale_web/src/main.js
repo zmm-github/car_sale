@@ -8,6 +8,8 @@ import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
 
 import '@/styles/index.scss' // global css
 
+import 'default-passive-events'
+
 import App from './App'
 import store from './store'
 import router from './router'

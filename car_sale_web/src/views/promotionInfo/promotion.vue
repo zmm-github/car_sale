@@ -42,7 +42,7 @@
                 </el-table-column>
                 <el-table-column prop="image" label="促销图片" width="140">
                     <template slot-scope="scope">
-                        <el-image v-if="scope.row.image" style="width: 80px; height: 80px; border-radius: 50%;" alt="图片显示失败"
+                        <el-image v-if="scope.row.image" fit="fill" style="width: 80px; height: 80px; border-radius: 50%;" alt="图片显示失败"
                             :src="scope.row.image" :preview-src-list="[scope.row.image]">
                         </el-image>
                         <el-image v-else style="width: 80px; height: 80px; border-radius: 50%;" alt="图片显示失败" src="">
@@ -139,6 +139,7 @@ export default {
         return {
             title: '',
             total: 0,
+            file: {},
             imageUrl: '',
             excelDialogVisible: false,
             selectData: [],
@@ -212,6 +213,7 @@ export default {
         clearData() {
             // 清理数据
             this.promotionForm = {};
+            this.file = {};
         },
 
         // 图片上传
@@ -329,8 +331,6 @@ export default {
                         that.$refs.upload.submit();
                     } else {
                         promotionApi.savePromotion(that.promotionForm).then(res => {
-                            // 清空对话框中的数据
-                            that.promotionForm = {};
                             // 关闭对话框
                             that.dialogFormVisible = false;
                             // 重新获取列表信息

@@ -6,20 +6,25 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  // computed: {
+  //   key() {
+  //     return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
+  //   }
+  // }
 }
 </script>
 
 <style>
-.app-main{
+.app-main {
   padding: 10px;
 }
 
-.common{
+.common {
   margin-top: 40px;
 }
 
-.el-card{
+.el-card {
   margin-bottom: 10px;
 }
 </style>

@@ -2,7 +2,7 @@ package com.zmm.car.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.Promotion;
 import com.zmm.car.service.IPromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,28 +60,28 @@ public class PromotionController {
         Date date = new Date();
         promotion.setCreateTime(date);
         promotionService.save(promotion);
-        return ResultMap.success("新增促销信息成功！！！");
+        return ResultMap.success("新增促销信息成功！");
     }
 
     /* 修改促销信息 */
     @PutMapping("/updatePromotion")
     public ResultMap updatePromotion(@RequestBody Promotion Promotion) {
         promotionService.updateById(Promotion);
-        return ResultMap.success("修改促销信息成功！！！");
+        return ResultMap.success("修改促销信息成功！");
     }
 
     /* 删除促销信息 */
     @DeleteMapping("/deletePromotionById/{id}")
     public ResultMap deletePromotionById(@PathVariable("id") Integer id) {
         promotionService.removeById(id);
-        return ResultMap.success("删除促销信息成功！！！");
+        return ResultMap.success("已成功删除编号 “" + id + "” 的促销信息！");
     }
 
     /* 删除选中的多个促销信息 */
     @DeleteMapping("/deletePromotionByIds")
     public ResultMap deletePromotionByIds(@RequestBody List<Integer> ids) {
         promotionService.removeByIds(ids);
-        return ResultMap.success("已成功删除编号 “" + ids + "” 的促销信息！！！");
+        return ResultMap.success("已成功删除编号 “" + ids + "” 的促销信息！");
     }
 
     /* 根据id查询指定促销信息 */

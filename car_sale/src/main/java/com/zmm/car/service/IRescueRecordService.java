@@ -2,6 +2,7 @@ package com.zmm.car.service;
 
 import com.zmm.car.entity.RescueRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zmm.car.vo.LineVO;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRescueRecordService extends IService<RescueRecord> {
 
+    LineVO getRescueLine();
 }

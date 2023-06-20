@@ -1,9 +1,8 @@
 package com.zmm.car.controller;
 
-import com.alibaba.fastjson2.util.DateUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.Customer;
 import com.zmm.car.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,28 +60,28 @@ public class CustomerController {
         Date date = new Date();
         customer.setApplicationTime(date);
         customerService.save(customer);
-        return ResultMap.success("新增顾客成功！！！");
+        return ResultMap.success("新增顾客成功！");
     }
 
     /* 修改顾客 */
     @PutMapping("/updateCustomer")
     public ResultMap updateCustomer(@RequestBody Customer customer) {
         customerService.updateById(customer);
-        return ResultMap.success("修改顾客成功！！！");
+        return ResultMap.success("修改顾客成功！");
     }
 
     /* 删除顾客 */
     @DeleteMapping("/deleteCustomerById/{id}")
     public ResultMap deleteCustomerById(@PathVariable("id") Integer id) {
         customerService.removeById(id);
-        return ResultMap.success("删除顾客成功！！！");
+        return ResultMap.success("已成功删除编号 “" + id + "” 的顾客信息！");
     }
 
     /* 删除选中的多个顾客 */
     @DeleteMapping("/deleteCustomerByIds")
     public ResultMap deleteCustomerByIds(@RequestBody List<Integer> ids) {
         customerService.removeByIds(ids);
-        return ResultMap.success("已成功删除编号 “" + ids + "” 的顾客！！！");
+        return ResultMap.success("已成功删除编号 “" + ids + "” 的顾客信息！");
     }
 
     /* 根据id查询指定顾客信息 */

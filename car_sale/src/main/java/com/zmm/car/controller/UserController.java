@@ -2,7 +2,7 @@ package com.zmm.car.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.entity.User;
 import com.zmm.car.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
+    @Resource
     private IUserService userService;
 
     @Autowired
@@ -99,14 +100,14 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         // 添加到数据库中
         userService.addUser(user);
-        return ResultMap.success("新增用户成功...");
+        return ResultMap.success("新增用户成功！");
     }
 
     // 根据id删除指定用户
     @DeleteMapping("/deleteUserById/{id}")
     public ResultMap deleteUserById(@PathVariable("id") Integer id) {
         userService.deleteUserById(id);
-        return ResultMap.success("已删除编号 “" + id + "” 的用户..");
+        return ResultMap.success("已成功删除编号 “" + id + "” 的用户援信息！");
     }
 
     // 根据id获取指定用户信息
@@ -117,14 +118,14 @@ public class UserController {
             return ResultMap.success("已成功获取编号 “" + id + "” 的用户信息", user);
         }
 
-        return ResultMap.fail("获取用户失败...");
+        return ResultMap.fail("获取用户失败！");
     }
 
     // 根据id修改用户
     @PutMapping("/updateUserById")
     public ResultMap updateUserById(@RequestBody User user) {
         userService.updateUserById(user);
-        return ResultMap.success("修改用户成功...");
+        return ResultMap.success("修改用户成功！");
     }
 
     // 根据id批量删除用户
@@ -132,10 +133,10 @@ public class UserController {
     public ResultMap deleteUserByIds(@RequestBody List<Integer> ids) {
         boolean b = userService.removeByIds(ids);
         if (b) {
-            return ResultMap.success("已删除编号 “" + ids + "” 的用户...");
+            return ResultMap.success("已成功删除编号 “" + ids + "” 的用户信息！");
         }
 
-        return ResultMap.fail("删除编号 “" + ids + "” 的用户失败...");
+        return ResultMap.fail("删除编号 “" + ids + "” 的用户信息失败！");
     }
 
     // 用户注册

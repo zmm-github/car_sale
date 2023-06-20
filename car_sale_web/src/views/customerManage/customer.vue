@@ -83,7 +83,7 @@
                         autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="手机号" prop="phoneNumber" :label-width="formLabelWidth">
-                    <el-input v-model="customerForm.phoneNumber" maxlength="11" placeholder="请输入手机号" clearable
+                    <el-input v-model="customerForm.phoneNumber" show-word-limit maxlength="11" placeholder="请输入手机号" clearable
                         autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="状态" prop="status" :label-width="formLabelWidth">

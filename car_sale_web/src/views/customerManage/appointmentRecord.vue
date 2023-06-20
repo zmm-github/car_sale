@@ -1,19 +1,19 @@
 <template>
-    <div id="orderRecord-container" class="common">
+    <div id="appointmentRecord-container" class="common">
         <!-- 顶部搜索框 -->
         <el-card class="search">
             <el-row>
                 <el-col :span="18">
                     <el-input placeholder="姓名" v-model="searchModel.name" clearable></el-input>
                     <el-input placeholder="类型" v-model="searchModel.type" clearable></el-input>
-                    <el-button type="primary" @click="getOrderRecordList" size="medium" round
+                    <el-button type="primary" @click="getAppointmentRecordList" size="medium" round
                         icon="el-icon-search">查询</el-button>
                 </el-col>
                 <el-col :span="6" align="right">
                     <el-button-group>
                         <el-button type="success" icon="el-icon-plus" @click="exportExcelSelect">导出</el-button>
                         <el-button type="primary" @click="openDialogUI(null)" icon="el-icon-plus">新增</el-button>
-                        <el-button type="danger" icon="el-icon-delete" @click="deleteOrderRecordByIds">批量删除</el-button>
+                        <el-button type="danger" icon="el-icon-delete" @click="deleteAppointmentRecordByIds">批量删除</el-button>
                     </el-button-group>
                 </el-col>
             </el-row>
@@ -21,7 +21,7 @@
 
         <!-- 结果列表 -->
         <el-card>
-            <el-table size="small" border stripe ref="multipleTable" :data="orderRecordList" :cell-style="rowStyle"
+            <el-table size="small" border stripe ref="multipleTable" :data="appointmentRecordList" :cell-style="rowStyle"
                 :header-cell-style="headerCellStyle" tooltip-effect="dark" style="width: 100%"
                 :default-sort="{ prop: 'createTime', order: 'descending' }" @selection-change="handleSelectionChange">
                 <el-table-column fixed="left" type="selection" width="55">
@@ -72,35 +72,35 @@
         <!-- 对话框 -->
         <el-dialog @close="clearData" :title="title" top="10vh" :visible.sync="dialogFormVisible"
             :close-on-click-modal="closeOnClickModel" :destroy-on-close="destroyOnClose" :before-close="handleClose">
-            <el-form ref="orderRecordFormRef" :rules="rules" :model="orderRecordForm">
+            <el-form ref="appointmentRecordFormRef" :rules="rules" :model="appointmentRecordForm">
                 <el-form-item label="姓名" prop="name" :label-width="formLabelWidth">
-                    <el-input v-model="orderRecordForm.name" placeholder="请输入姓名" clearable autocomplete="off"></el-input>
+                    <el-input v-model="appointmentRecordForm.name" placeholder="请输入姓名" clearable autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="手机号" prop="phoneNumber" :label-width="formLabelWidth">
-                    <el-input v-model="orderRecordForm.phoneNumber" placeholder="请输入手机号" clearable
+                    <el-input v-model="appointmentRecordForm.phoneNumber" show-word-limit maxlength="11" placeholder="请输入手机号" clearable
                         autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="车系" prop="carSeries" :label-width="formLabelWidth">
-                    <el-select v-model="orderRecordForm.carSeries" placeholder="请选择车系">
+                    <el-select v-model="appointmentRecordForm.carSeries" placeholder="请选择车系">
                         <el-option v-for="(carSeries, index) in carSeriesList" :key="index" :label="carSeries.carSeries"
                             :value="carSeries.carSeries"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="车型" prop="carModel" :label-width="formLabelWidth">
-                    <el-select v-model="orderRecordForm.carModel" placeholder="请选择车型">
+                    <el-select v-model="appointmentRecordForm.carModel" placeholder="请选择车型">
                         <el-option v-for="(carModel, index) in carModelList" :key="index" :label="carModel.carModel"
                             :value="carModel.carModel"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="留言" prop="message" :label-width="formLabelWidth">
-                    <el-input v-model="orderRecordForm.message" placeholder="请输入留言" clearable autocomplete="off"></el-input>
+                    <el-input v-model="appointmentRecordForm.message" placeholder="请输入留言" clearable autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="预约类型" prop="type" :label-width="formLabelWidth">
-                    <el-input v-model="orderRecordForm.type" placeholder="请输入车型" clearable autocomplete="off"></el-input>
+                    <el-input v-model="appointmentRecordForm.type" placeholder="请输入车型" clearable autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item align="right">
                     <el-button @click="handleCancel">取消</el-button>
-                    <el-button type="primary" @click="handleAddOrUpdate('orderRecordFormRef')">{{ !orderRecordForm.id ? '新增'
+                    <el-button type="primary" @click="handleAddOrUpdate('appointmentRecordFormRef')">{{ !appointmentRecordForm.id ? '新增'
                         :
                         '修改'
                     }}</el-button>
@@ -145,12 +145,12 @@
 </template>
   
 <script>
-import orderRecordApi from "@/api/orderRecordManage"
+import appointmentRecordApi from "@/api/appointmentRecordManage"
 import carSeriesApi from "@/api/carSeriesManage"
 import carModelApi from "@/api/carModelManage"
 import htmlToExcel from '@/utils/htmlToExcel';
 export default {
-    name: 'OrderRecord',
+    name: 'AppointmentRecord',
     data() {
         /**
         * 校验手机号
@@ -176,8 +176,8 @@ export default {
                 currentPage: 1,
                 pageSize: 5
             },
-            orderRecordList: [],
-            orderRecordForm: {},
+            appointmentRecordList: [],
+            appointmentRecordForm: {},
             dialogFormVisible: false,
             closeOnClickModel: false,
             destroyOnClose: true,
@@ -242,8 +242,8 @@ export default {
                 that.title = "新增预约记录";
             } else { // 修改操作
                 that.title = "修改预约记录";
-                orderRecordApi.getOrderRecordById(id).then(res => {
-                    that.orderRecordForm = res.data;
+                appointmentRecordApi.getAppointmentRecordById(id).then(res => {
+                    that.appointmentRecordForm = res.data;
                 })
             }
             // 显示对话框
@@ -260,13 +260,13 @@ export default {
 
         clearData() {
             // 清理数据
-            this.orderRecordForm = {};
+            this.appointmentRecordForm = {};
         },
         // 获取预约记录列表
-        getOrderRecordList() {
+        getAppointmentRecordList() {
             var that = this;
-            orderRecordApi.getOrderRecordList(that.searchModel).then(res => {
-                that.orderRecordList = res.data.rows;
+            appointmentRecordApi.getAppointmentRecordList(that.searchModel).then(res => {
+                that.appointmentRecordList = res.data.rows;
                 that.total = res.data.total;
             })
         },
@@ -278,12 +278,12 @@ export default {
             });
         },
         // 删除选中的多个预约记录
-        deleteOrderRecordByIds() {
+        deleteAppointmentRecordByIds() {
             var that = this;
             that.$confirm("你确定要删除编号 “" + that.ids + "” 的预约记录信息吗").then(() => {
-                orderRecordApi.deleteOrderRecordByIds(that.ids).then(res => {
+                appointmentRecordApi.deleteAppointmentRecordByIds(that.ids).then(res => {
                     // 重新获取所有预约记录列表进行展示
-                    that.getOrderRecordList();
+                    that.getAppointmentRecordList();
                     // 提示删除成功信息
                     that.$message.success(res.message);
                 })
@@ -295,13 +295,13 @@ export default {
         // 处理每页大小改变
         handleSizeChange(val) {
             this.searchModel.pageSize = val;
-            this.getOrderRecordList();
+            this.getAppointmentRecordList();
         },
 
         // 处理当前页改变
         handleCurrentChange(val) {
             this.searchModel.currentPage = val;
-            this.getOrderRecordList()
+            this.getAppointmentRecordList()
         },
         // 关闭对话框
         handleClose() {
@@ -322,9 +322,9 @@ export default {
             var that = this;
             that.$confirm("你确定要删除编号 “" + id + "” 的预约记录信息吗?").then(() => {
                 // 调用删除指定预约记录的api进行删除
-                orderRecordApi.deleteOrderRecordById(id).then(res => {
+                appointmentRecordApi.deleteAppointmentRecordById(id).then(res => {
                     // 调用查询预约记录列表，重新加载。
-                    that.getOrderRecordList();
+                    that.getAppointmentRecordList();
                     // 弹出成功消息提示
                     that.$message.success(res.message);
                 });
@@ -334,17 +334,17 @@ export default {
         },
 
         // 处理新增或修改操作
-        handleAddOrUpdate(orderRecordFormRef) {
+        handleAddOrUpdate(appointmentRecordFormRef) {
             var that = this;
-            this.$refs[orderRecordFormRef].validate((valid) => {
+            this.$refs[appointmentRecordFormRef].validate((valid) => {
                 if (valid) {
-                    orderRecordApi.saveOrderRecord(that.orderRecordForm).then(res => {
+                    appointmentRecordApi.saveAppointmentRecord(that.appointmentRecordForm).then(res => {
                         // 清空对话框中的数据
-                        that.orderRecordForm = {};
+                        that.appointmentRecordForm = {};
                         // 关闭对话框
                         that.dialogFormVisible = false;
                         // 重新获取列表信息
-                        that.getOrderRecordList();
+                        that.getAppointmentRecordList();
                         // 显示成功提示信息
                         that.$message.success(res.message);
                     })
@@ -374,7 +374,7 @@ export default {
 
     },
     mounted() {
-        this.getOrderRecordList();
+        this.getAppointmentRecordList();
     }
 }
 </script>

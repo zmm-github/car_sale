@@ -1,9 +1,6 @@
 package com.zmm.car.utils;
 
-import com.zmm.car.common.vo.ResultMap;
-import com.zmm.car.entity.CarModel;
-import com.zmm.car.service.ICarModelService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zmm.car.vo.ResultMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

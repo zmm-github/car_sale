@@ -1,6 +1,6 @@
 package com.zmm.car.mapper;
 
-import com.zmm.car.entity.Lamp;
+import com.zmm.car.entity.AppointmentRecord;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author zmm
  * @since 2023-05-25
  */
-public interface LampMapper extends BaseMapper<Lamp> {
+public interface AppointmentRecordMapper extends BaseMapper<AppointmentRecord> {
 
 }

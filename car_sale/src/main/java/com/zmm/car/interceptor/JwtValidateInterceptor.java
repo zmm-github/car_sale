@@ -1,7 +1,7 @@
 package com.zmm.car.interceptor;
 
 import com.alibaba.fastjson2.JSON;
-import com.zmm.car.common.vo.ResultMap;
+import com.zmm.car.vo.ResultMap;
 import com.zmm.car.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
